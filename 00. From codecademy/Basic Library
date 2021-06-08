@@ -1,0 +1,108 @@
+class Media {
+  constructor(title) {
+    this._title = title;
+    this._ratings = [];
+    this._isCheckedOut = false;
+  }
+  get title() {
+    return this._title;
+  }
+  get ratings() {
+    return this._ratings;
+  }
+  get isCheckedOut() {
+    return this._isCheckedOut;
+  }
+  set isCheckedOut(key) {
+    this._isCheckedOut = key;
+  }
+  getAverageRating() {
+    let ratingSum = this.ratings.reduce((currentSum, rating) => 
+    currentSum + rating);
+    return ratingSum / this.ratings.length; 
+  }
+  
+  toggleCheckOutStatus() {
+    this.isCheckedOut = !this.isCheckedOut;
+  }
+  addRating(rating) {
+    if (rating <= 5 && rating >= 0) this.ratings.push(rating);
+      else console.log('Please input rating score between 0 and 5');
+  }
+ }
+
+ class Book extends Media {
+   constructor(title, author, pages) {
+     super(title);
+     this._author = author;
+     this._pages = pages;
+   }
+   get author() {
+     return this._author;
+   }
+   get pages() {
+     return this._pages;
+   }
+ }
+
+class Movie extends Media {
+  constructor(title, director, runTime) {
+    super(title);
+    this._director = director;
+    this._runTime = runTime;
+  }
+  get director() {
+    return this._director;
+  }
+  get runTime() {
+    return this._runTime;
+  }
+}
+class CD extends Media {
+  constructor(title, artist, songs) {
+    super(title);
+      this._aritst = artist;
+      this._songs = songs;
+  }
+  get artist() {
+    return this._artist;
+  }
+  get songs() {
+    return this._songs;
+  }
+  shuffle() {
+    for (let i = 0; i < this.songs.length; i++) {
+      const j = Math.floor(Math.random() * this.songs.length);
+      const temp = this.songs[i];
+      this.songs[i] = this.songs[j];
+      this.songs[j] = temp;
+    }
+  }
+}
+
+const book1 = new Book('Around the world', 'Jules Verne', 250);
+const historyOfEverything = new Book('A short History of Nearly Everything', 'Bill Bryson', 544);
+historyOfEverything.toggleCheckOutStatus();
+console.log(historyOfEverything.isCheckedOut);
+historyOfEverything.addRating(4);
+historyOfEverything.addRating(5);
+historyOfEverything.addRating(5);
+console.log(historyOfEverything.getAverageRating());
+
+const movie1 = new Movie('Titanic', 'James Cameron', 210);
+const speed = new Movie('Speed', 'Jan de Bont', 116);
+
+speed.toggleCheckOutStatus();
+console.log(speed.isCheckedOut);
+speed.addRating(1);
+speed.addRating(1);
+speed.addRating(5);
+console.log(speed.getAverageRating());
+
+const cd1 = new CD('Appetite for destruction', 'Guns n Roses', ['Welcome to the Jungle', 'It\'s So Easy', 'Nightrain']);
+console.log(cd1.songs);
+
+cd1.shuffle();
+cd1.shuffle();
+console.log(cd1.songs);
+
