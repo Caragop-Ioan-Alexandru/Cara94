@@ -1,0 +1,71 @@
+const team = {
+  _players: [
+  {
+    firstName: 'Pablo',
+    lastName: 'Sanchez',
+    age: 16
+  },
+  {
+    firstName: 'Pablo',
+    lastName: 'Garcia',
+    age: 18
+  },
+  {
+    firstName: 'Ronaldinho',
+    lastName: 'Gaucho',
+    age: 40
+  }],
+  _games: [
+  {
+    opponent: 'Barcelona',
+    teamGoals: 3,
+    opponentGoals: 2
+  },
+  {
+    opponent: 'Real Madrid',
+    teamGoals: 2,
+    opponentGoals: 2
+  },
+  {
+    opponent: 'Deportivo LaCoruna',
+    teamGoals: 2,
+    opponentGoals: 1
+  }],
+    get players() {
+      return this._players;
+  },
+    get games() {
+      return this._games;
+  },
+    addPlayer(firstName, lastName, age) {
+        const newPlayer = {
+          firstName,
+          lastName,
+          age
+        };
+        this._players.push(newPlayer);
+    },
+    addGame(opponent, teamGoals, opponentGoals) {
+      const newGame = {
+        opponent,
+        teamGoals,
+        opponentGoals
+      };
+      this._games.push(newGame);
+    }
+};
+
+team.addPlayer('Steph', 'Curry', 28);
+team.addPlayer('Lisa', 'Leslie', 44);
+team.addPlayer('Bugs', 'Bunny', 76);
+console.log(team._players);
+
+team.addGame('Chelsea', 2, 1);
+team.addGame('Manchester United', 2, 2);
+team.addGame('Manchester City', 2, 3);
+console.log(team._games);
+
+
+
+
+
