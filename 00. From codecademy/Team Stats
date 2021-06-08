@@ -58,12 +58,14 @@ const team = {
 team.addPlayer('Steph', 'Curry', 28);
 team.addPlayer('Lisa', 'Leslie', 44);
 team.addPlayer('Bugs', 'Bunny', 76);
-console.log(team._players);
+const players = team.players;
+console.log(players);
 
 team.addGame('Chelsea', 2, 1);
 team.addGame('Manchester United', 2, 2);
 team.addGame('Manchester City', 2, 3);
-console.log(team._games);
+const games = team.games;
+console.log(games);
 
 
 
