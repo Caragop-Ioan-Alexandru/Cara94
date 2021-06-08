@@ -1,0 +1,79 @@
+const menu = {
+  _courses: {
+    appetizers: [],
+    mains: [],
+    desserts: [],
+  },
+  get appetizers() {
+    return this._courses.appetizers;
+  },
+  set appetizers(appetizerIn) {
+    this._courses.appetizers = appetizerIn;
+  },
+  get mains() {
+      return this._courses.mains;
+  },
+  set mains(mainsIn) {
+    this._courses.mains = mainsIn;
+  },
+  get desserts() {
+      return this._courses.desserts;
+  },
+  set desserts(dessertsIn) {
+    this._courses.desserts = dessertsIn;
+  },
+  get courses() {
+      return {
+      appetizers: this.appetizers,
+      mains: this.mains,
+      desserts: this.desserts
+      };
+  },
+    addDishToCourse (courseName, dishName, dishPrice) { 
+        const dish = {
+        name: dishName,
+        price: dishPrice
+      };
+      this._courses[courseName].push(dish);
+  },
+    getRandomDishFromCourse(courseName) {
+      let dishes = this._courses[courseName];
+      let randomIndex = Math.floor(Math.random() * dishes.length);
+      return dishes[randomIndex];
+  },
+    generateRandomMeal() {
+      const appetizer = this.getRandomDishFromCourse('appetizers');
+      const main = this.getRandomDishFromCourse('mains');
+      const dessert = this.getRandomDishFromCourse('desserts');
+      const totalPrice = appetizer.price + main.price + dessert.price;
+      return `Your meal is ${appetizer.name}, ${main.name} and ${dessert.name}. The price is ${totalPrice}.`;
+  }
+};
+
+  menu.addDishToCourse('appetizers','carpaccio', 7);
+  menu.addDishToCourse('mains','steak', 13);
+  menu.addDishToCourse('desserts','chocolate bomb', 6);
+
+  menu.addDishToCourse('appetizers','fries', 4);
+  menu.addDishToCourse('mains','beef', 15);
+  menu.addDishToCourse('desserts','cake', 5);
+
+  menu.addDishToCourse('appetizers','salad', 3);
+  menu.addDishToCourse('mains','trout', 10);
+  menu.addDishToCourse('desserts','fruits', 3);
+
+  menu.addDishToCourse('appetizers','sandwich', 3);
+  menu.addDishToCourse('mains','salmon', 14);
+  menu.addDishToCourse('desserts','ice cream', 3.5);
+  
+  const meal = menu.generateRandomMeal();
+  console.log(meal);
+  
+
+
+
+
+
+
+
+
